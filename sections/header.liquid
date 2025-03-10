@@ -1,0 +1,164 @@
+<div class="header-wrapper">
+  <header class="header page-width">
+    <div class="header__logo">
+      <a href="{{ routes.root_url }}" class="header__logo-link">
+        {%- if section.settings.logo != blank -%}
+          {{ section.settings.logo | image_url: width: section.settings.logo_width | image_tag:
+            class: 'header__logo-image',
+            widths: '50, 100, 150, 200, 250, 300, 400, 500',
+            height: section.settings.logo_width | divided_by: 2,
+            alt: shop.name
+          }}
+        {%- else -%}
+          <div class="header__logo-svg-wrapper">
+            {% render 'KungulVerifiedLogo' %}
+          </div>
+        {%- endif -%}
+      </a>
+    </div>
+
+    <nav class="header__nav">
+      <ul class="header__menu">
+        <li><a href="/about-us" {% if request.path == '/about-us' %}class="active"{% endif %}>ABOUT US</a></li>
+        <li><a href="/blog" {% if request.path contains '/blog' %}class="active"{% endif %}>BLOG</a></li>
+        <li><a href="/contact-us" {% if request.path == '/contact-us' %}class="active"{% endif %}>CONTACT US</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <div class="header__social">
+        <a href="{{ settings.social_facebook_link }}" class="header__social-link" target="_blank" rel="noopener">
+          {% render 'icon-facebook' %}
+        </a>
+        <a href="{{ settings.social_instagram_link }}" class="header__social-link" target="_blank" rel="noopener">
+          {% render 'icon-instagram' %}
+        </a>
+        <a href="{{ settings.social_tiktok_link }}" class="header__social-link" target="_blank" rel="noopener">
+          {% render 'icon-tiktok' %}
+        </a>
+        <a href="{{ settings.social_youtube_link }}" class="header__social-link" target="_blank" rel="noopener">
+          {% render 'icon-youtube' %}
+        </a>
+      </div>
+      <a href="#" class="button--skan">SKAN APP</a>
+    </div>
+  </header>
+</div>
+
+{% style %}
+.header-wrapper {
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 0;
+  max-width: var(--page-width);
+  margin: 0 auto;
+}
+
+.header__logo {
+  flex-shrink: 0;
+  width: 180px;
+}
+
+.header__logo-link {
+  display: block;
+}
+
+.header__logo-image {
+  display: block;
+  max-width: 180px;
+  width: 100%;
+  height: auto;
+}
+
+.header__nav {
+  margin: 0 auto;
+}
+
+.header__menu {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header__menu a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.header__menu a:hover,
+.header__menu a.active {
+  color: #666;
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header__social {
+  display: flex;
+  gap: 1rem;
+}
+
+.header__social-link {
+  color: #000;
+}
+
+.header__social-link:hover {
+  color: #666;
+}
+
+.button--skan {
+  background: #666;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.button--skan:hover {
+  background: #555;
+}
+
+@media screen and (max-width: 990px) {
+  .header {
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
+  
+  .header__nav {
+    order: 3;
+    width: 100%;
+    margin: 1rem 0 0;
+  }
+  
+  .header__menu {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .header__actions {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .header__social {
+    width: 100%;
+    justify-content: center;
+  }
+}
+{% endstyle %}
